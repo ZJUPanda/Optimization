@@ -31,7 +31,7 @@ $$
 
 **定义** 称(13.1)的可行点$x$是一个基础可行点(basic feasible point)，若存在指标集$\{1, 2, \cdots, n\}$的子集$\mathcal{B}$满足：
 
-1. $\mathcal{B}$包含$m$的指标；
+1. $\mathcal{B}$包含$m$个指标；
 2. $i \notin \mathcal{B}$，$x_i = 0$；
 3. $B_{m \times m} = [A_i]_{i \in \mathcal{B}}$非奇异。
 
@@ -256,11 +256,11 @@ x_B^+ = x_B - x_q^+d,
 $$
 如果$d$至少存在一个正分量，那么在对应的坐标方向上，$x_B$的分量以$x_qd_i$的速率下降，$i \in \mathcal{B}$，$d_i > 0$。反之，若$\forall i \in \mathcal{B}$，有$d_i \leq 0$，则说明存在可行域的开放方向（到无穷远）上可以一直下降，即对应的线性规划无解。对前一种情况，考虑到$x_B^+$也必须满足各分量非负，即$\forall i \in \mathcal{B}$，$d_i > 0$，必须有
 $$
-\frac{(x_B^+)_i}{d_i} = \frac{(x_B)_i}{d_i} - x_q^+ \geq 0, \quad \forall i \in \mathcal{B},
+\frac{(x_B^+)_i}{d_i} = \frac{(x_B)_i}{d_i} - x_q^+ \geq 0, \quad \forall i \in \mathcal{B}, d_i > 0,
 $$
 在上述各下降分量中，必有一个最先达到零（下降速率相同），那个就是我们选择的$p$。也即
 $$
-p = \mbox{argmin} \{\frac{(x_B)_i}{d_i}, i \in \mathcal{B}\}.
+p = \mbox{argmin} \{\frac{(x_B)_i}{d_i}, i \in \mathcal{B}, d_i > 0\}.
 $$
 而同时
 $$
@@ -311,7 +311,9 @@ x_B^+ = x_B - d\cdot x_q^+ = \left[
 \end{array}
 \right].
 $$
-注意这里$x_B^+$中对应$p$的分量必须是零，否则必然有错误。也即此时，新的基础可行点为（$x_3$从$5$降到$1$。如果出基选$3$那么这一项就要降到$0$，从而导致$x_4$小于零，违背约束）
+注意这里$x_B^+$中对应$p$的分量必须是零，否则必然有错误（$x_3$从$5$降到$1$。如果出基选$3$那么这一项就要降到$0$，从而导致$x_4$小于零，违背约束）
+
+此时，新的基础可行点为
 $$
 x^+ = (4, 0, 1, 0)^T.
 $$
@@ -476,14 +478,18 @@ s_N = c_N - N^T\lambda = \left[
 \end{array}
 \right] - \left[
 \begin{array}{cc}
-1 & 0 \\
-0 & 1
+0 & 1 \\
+1 & 0
 \end{array}
 \right]\left[
 \begin{array}{c}
+-\frac43 \\ -\frac43
+\end{array}
+\right] = \left[
+\begin{array}{c}
 \frac43 \\ \frac43
 \end{array}
-\right] \geq 0,
+\right]\geq 0,
 $$
 满足(13.4)，即$x^* = (\frac{11}{3}, \frac{4}{3}, 0, 0)^T$，$f(x^*) = -\frac{52}{3}$。
 
